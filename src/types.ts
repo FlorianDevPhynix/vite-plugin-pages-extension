@@ -95,9 +95,15 @@ interface Options {
   nuxtStyle: boolean
   /**
    * Routing style
+   * @default 'nextlike'
+   * @see dynamicRouteStyle
+   */
+  routeStyle: 'nextlike'
+  /**
+   * Routing style
    * @default false
    */
-  routeStyle: 'next' | 'nuxt' | 'remix'
+  dynamicRouteStyle: 'next' | 'nuxt' | 'remix'
   /**
    * Separator for generated route names.
    * @default -

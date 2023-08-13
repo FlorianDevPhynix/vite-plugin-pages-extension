@@ -75,7 +75,12 @@ export function resolveOptions(userOptions: UserOptions, viteRoot?: string): Res
 
   const resolvedDirs = resolvePageDirs(dirs, root, exclude)
 
-  const routeStyle = userOptions.nuxtStyle ? 'nuxt' : userOptions.routeStyle || 'next'
+  const routeStyle = 'nextlike'
+  const dynamicRouteStyle = userOptions.nuxtStyle
+    ? 'nuxt'
+    : (userOptions.routeStyle !== undefined && userOptions.routeStyle !== 'nextlike')
+        ? userOptions.routeStyle as ResolvedOptions['dynamicRouteStyle'] || 'next'
+        : userOptions.nuxtStyle ? 'nuxt' : userOptions.dynamicRouteStyle || 'next'
 
   const moduleIds = userOptions.moduleId
     ? [userOptions.moduleId]
@@ -84,6 +89,7 @@ export function resolveOptions(userOptions: UserOptions, viteRoot?: string): Res
   const resolvedOptions: ResolvedOptions = {
     dirs: resolvedDirs,
     routeStyle,
+    dynamicRouteStyle,
     routeBlockLang,
     moduleIds,
     root,
