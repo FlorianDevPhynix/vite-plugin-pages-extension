@@ -136,3 +136,26 @@ export function reactResolver(): PageResolver {
 		},
 	};
 }
+
+interface Framework {
+	moduleIds: string[];
+	extensions: string[];
+	finalizeCode(code: string): string;
+	// getComputedRoutes(ctx: PageContext): Promise<ReactRoute[]>;
+	stringify: {
+		component: (path: string) => string;
+		dynamicImport: (path: string) => string;
+	};
+}
+export function react(options: { extensions: string[] }): Framework {
+	const { extensions = ['tsx', 'jsx', 'ts', 'js'] } = options;
+	return {
+		moduleIds: ['~react-pages', 'virtual:generated-pages-react'],
+		extensions,
+		finalizeCode: (code) => `import React from "react";\n${code}`,
+		stringify: {
+			component: (path) => `React.createElement(${path})`,
+			dynamicImport: (path) => `React.lazy(() => import("${path}"))`,
+		},
+	};
+}
