@@ -3,7 +3,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "prettier.enable": false,
   "eslint.validate": [
     "javascript",
     "javascriptreact",
@@ -26,4 +25,9 @@
     "json",
     "json5"
   ],
+  "prettier.enable": true,
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

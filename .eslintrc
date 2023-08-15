@@ -1,5 +1,8 @@
 {
-  "extends": "@hannoeru",
+  "extends": [
+    "@hannoeru",
+    "prettier"
+  ],
   "rules": {
     "react/function-component-definition": "off"
   }
